@@ -7,44 +7,55 @@
     	<!--TITLE-->
 	<title>Socket.IO chat</title>
 
+	<!--ICONS-->
+	<script src="https://kit.fontawesome.com/4643810438.js" crossorigin="anonymous"></script>
+
 	<!--C S S-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/app.css">
 </head>
 	<body>
-		<ul id="messages"></ul>
+		<main class="page">
+			<section>
+				<div class="container">
+					<div class="page__title">
+						<h1>
+							<i class="fas fa-comment-dots"></i>
+							Messages.
+						</h1>
+						<p>Chat online</p>
+					</div>
+				</div>
+			</section>
 
-		<form action="" id="form">
-			<input type="text" id="message" autocomplete="off" />
-			<button type="submit" class="btn">Send</button>
-		</form>
+			<section class="page__chat">
+				<div class="container">
+					<form>
+						<label>Escribir mensaje:</label>
+						<div class="page__chat__row" role="row">
+							<div class="page__chat__form__input">
+								<input type="text" id="message" autocomplete="off" />
+							</div>
+							<div class="page__chat__form__button">
+								<button type="submit" class="btn">
+									<i class="far fa-paper-plane"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+
+			<section class="page__messages">
+				<div class="container">
+					<ul id="messages" ></ul>
+				</div>
+			</section>
+		</main>
 
 		<!-- JAVASCRIPT -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script>
-		$(function () {
-			var socket = io();
-
-			$('form').submit(function(event){
-				event.preventDefault();
-
-				// Get value
-				var _value = $('#message').val();
-
-				// Emit value
-				socket.emit('chat message', _value);
-
-				// Clean input
-				$('#message').val('');
-
-				return false;
-			});
-
-			// Show message
-			socket.on('chat message', function(msg){
-				$('#messages').append($('<li>').text(msg));
-			});
-		});
-		</script>
+		<script src="js/app.js"></script>
 	</body>
 </html>

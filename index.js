@@ -1,8 +1,14 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
+var path = require('path');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
+// Path
+app.use(express.static(path.join(__dirname, '/')));
+
+// Get index
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });
